@@ -1,0 +1,34 @@
+todo liste:
+- recuperer des fichiers csv (sous forme: nomInstallation, numInstallation, nomCommune, codeINSEE, codePostal, nomLieuDis)
+- lire et traitée ces fichiers depuis python pour creer une base de donnees => SQLite
+- sqlite3 => base de donnees embarquees en python
+- on doit pouvoir rechercher par ville, par sport
+	-> exemple: Je veux faire du foot a nantes
+	-> sort une liste d'installation a nantes proposant du foot
+
+Ce qui est note: 
+	- Qualité du code:
+		*Organisation du codePostal
+		*Separation des responsebilite
+		*modules python
+	- Documentation du codePostal
+	- Tests unitaires
+		*unittest
+	- comprehension du sujet
+
+
+	1\ Definir le modele des bases de donnees
+		- Tables / colonnes
+		- clefs primaire / etrangere
+		- Liens entre des tables
+
+	/!\ Utiliser GitHub /!\
+	1\	Utilisation de GitHub~
+		1\	Créer un compte
+		2\	git clone https://github.com/Kawrantin/master-ProjetPython.git
+		3\	git status
+			git add ...
+			git commit -m "..."
+			git push origine master -> commit avec le compte gitHub
+		4\	git fetch
+			git pull
