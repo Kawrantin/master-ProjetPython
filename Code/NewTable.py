@@ -3,7 +3,7 @@
 import csv
 import mysql.connector 
 
-conn = mysql.connector.connect(host="infoweb",user="E145425W",password="E145425W", database="E145425W") #MySQL
+conn = mysql.connector.connect(host="infoweb",user="",password="", database="") #MySQL
 cursor = conn.cursor()
 
 # Une installation compose de plusieurs equipements, un equipement regroupe plusieurs activitees & une activitee peut s'effectuee sur 
