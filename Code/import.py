@@ -1,4 +1,9 @@
 import csv
+import GestionEquipement
+
+gp = GestionEquipement
+gp.newTables()
+
 
 fname = "data/activite.csv"
 file1 = open(fname, "r")
@@ -12,14 +17,18 @@ file3 = open(fname3, "r")
 try:
     reader = csv.reader(file1, delimiter=',', quotechar='"')
     for row in reader:
-        print (row)
+        gp.insertActivite(row[4], row[5])
+        
     reader2 = csv.reader(file2, delimiter=',', quotechar='"')
     for row in reader2:
-        print (row)
+        gp.insertEquip(row[4], row[5], row[2])
+        gp.insertEquipActiv()
         
     reader3 = csv.reader(file3, delimiter=',', quotechar='"')
     for row in reader3:
-        print (row)
+        gp.insertInstall(row[1],row[0],row[7],row[4],row[2],row[10],row[9])
+
+
 finally:
     file1.close()
     file2.close()
