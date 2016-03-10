@@ -8,7 +8,7 @@ class GestionBDD(object):
 	conn=None
 
 	def __init__(self):
-		self.conn = mysql.connector.connect(host="infoweb",user="",password="", database="")
+		self.conn = mysql.connector.connect(host="infoweb",user="E145425W",password="E145425W", database="E145425W")
 
 
 	def newTables(self):
@@ -23,12 +23,12 @@ class GestionBDD(object):
 				DEFAULT CHARSET=utf8  """)
 			self.conn.commit()
 		except RuntimeError as e:
-			print("ERREUR : " + e.strerror)
+			print("ERREUR Activite: " + e.strerror)
 
 		try:
 			cursor.execute("""
 				CREATE TABLE IF NOT EXISTS installation (
-					id varchar(255) DEFAULT NULL,
+					id varchar(255) NOT NULL,
 					nom varchar(255) DEFAULT NULL,
 					adresse varchar(255) DEFAULT NULL,
 					codePostal INTEGER DEFAULT NULL,
@@ -39,33 +39,33 @@ class GestionBDD(object):
 				DEFAULT CHARSET=utf8  """)
 			self.conn.commit()
 		except RuntimeError as e:
-			print("ERREUR : " + e.strerror)
+			print("ERREUR Installation: " + e.strerror)
 
 		try:
 			cursor.execute("""
 				CREATE TABLE IF NOT EXISTS equipement (
-					id varchar (255) DEFAULT NULL,
+					id varchar (255) NOT NULL,
 					nom varchar(255) DEFAULT NULL,
-					id_installation varchar(255) DEFAULT NULL,
+					id_installation varchar(255),
 					PRIMARY KEY(id),
 					FOREIGN KEY (id_installation) REFERENCES installation(id) ON DELETE CASCADE ON UPDATE CASCADE)
 				DEFAULT CHARSET=utf8 """)
 			self.conn.commit()
 		except RuntimeError as e:
-			print("ERREUR : " + e.strerror)
+			print("ERREUR Equipement: " + e.strerror)
 
 		try:
 			cursor.execute("""
-				CREATE TABLE IF NOT EXISTS Equip_Activ (
-					id_equip varchar(255) DEFAULT NULL,
-					id_activ INTEGER DEFAULT NULL,
+				CREATE TABLE IF NOT EXISTS equip_activ (
+					id_equip varchar(255) NOT NULL,
+					id_activ INTEGER NOT NULL,
 					PRIMARY KEY(id_equip, id_activ),
 					FOREIGN KEY (id_equip) REFERENCES equipement(id) ON DELETE CASCADE ON UPDATE CASCADE,
 					FOREIGN KEY (id_activ) REFERENCES activite(idAct) ON DELETE CASCADE ON UPDATE CASCADE)
 				DEFAULT CHARSET=utf8  """)
 			self.conn.commit()
 		except RuntimeError as e:
-			print("ERREUR : " + e.strerror)
+			print("ERREUR Equip_ActivAct: " + e.strerror)
 
 
 	"""Fonctions d'ajouts"""
@@ -82,7 +82,7 @@ class GestionBDD(object):
 	def insertActivite(self, ida, nom):
 		cursor = self.conn.cursor()
 		try:
-			cursor.execute("""INSERT INTO activite (id, nom) VALUES(%s, %s)""", (ida, nom))
+			cursor.execute("""INSERT INTO activite (idAct, nom) VALUES(%s, %s)""", (ida, nom))
 		except RuntimeError as e:
 			print("ERREUR : " + e.strerror)
 		else:
@@ -102,7 +102,7 @@ class GestionBDD(object):
 	def insertEquipActiv(self, id_equip, id_activ):
 		cursor = self.conn.cursor()
 		try:
-			cursor.execute("""INSERT INTO Equip_Activ (id_equip, id_activ) VALUES(%s, %s)""", (id_equip, id_activ))
+			cursor.execute("""INSERT INTO equip_activ (id_equip, id_activ) VALUES(%s, %s)""", (id_equip, id_activ))
 		except RuntimeError as e:
 			print("ERREUR : " + e.strerror)
 		else:
