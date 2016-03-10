@@ -102,6 +102,3 @@ finally:
 
 # Fermeture de la connection a la BDD
 db.close()
-
-
-# PRINT("PROBBLEM WITH ROw {) : {} 
