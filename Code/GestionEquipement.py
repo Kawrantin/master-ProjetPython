@@ -8,7 +8,7 @@ class GestionEquipement(object):
 	conn=None
 
 	def __init__(self):
-		self.conn = mysql.connector.connect(host="infoweb",user="E145425W",password="E145425W", database="E145425W")
+		self.conn = mysql.connector.connect(host="infoweb",user="",password="", database="")
 
 
 	def newTables(self):
