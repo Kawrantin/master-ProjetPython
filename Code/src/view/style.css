@@ -1,0 +1,104 @@
+.fr-home {
+	background-color:white; 
+	height:750px;
+	margin:5%;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
+.body__h1 {
+
+}
+
+.body__h1__a {
+	text-decoration: none;
+	color:#585858;
+}
+	.body__h1__a:hover {
+
+		color : #8E8E8E;
+		transition: color 0.2s;
+	}
+
+
+
+
+
+.formu {
+	padding-top: 10%	;
+}
+
+.searchbarre {
+	border: 1px solid steelgrey; 
+	color: steelgrey no-repeat scroll left center;
+	margin-top: 5%;	
+	font-family: sans-serif;
+	appearance: none;
+  	box-shadow: none;
+  	border-radius: none;
+  	transition: box-shadow 0.6s, border 0.6s;
+}
+
+.searchbutton {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-property: color, background-color;
+  transition-property: color, background-color;
+}
+.searchbutton:hover, .searchbutton:focus, .searchbutton:active {
+  -webkit-animation-name: searchbutton;
+  animation-name: searchbutton;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  background-color: #959595;
+  color: white;
+}
+
+.searchbutton {
+	border:solid 1px steelgrey;
+	color:steelgrey;
+	font-size:14px;
+	margin-left: 2%;	
+}
+
+.searchbutton:hover {
+	@-webkit-keyframes searchbutton {
+  50% {
+    background-color: rgba(32, 152, 209, 0.75);
+  }
+}
+
+@keyframes searchbutton {
+  50% {
+    background-color: rgba(32, 152, 209, 0.75);
+  }
+}
+}
+
+.retour {
+	background-color:#605F5F ;
+	text-align: center;
+	margin: 50px 20px 50px 20px;
+	color: #F6F6F6;
+
+	-webkit-border-radius: 100px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	padding: 15px;
+}
