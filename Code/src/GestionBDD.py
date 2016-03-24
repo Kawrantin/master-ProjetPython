@@ -6,17 +6,23 @@ import mysql.connector
 class GestionBDD(object):
 
 	conn=None
-
+	"""
+	Initialisation de la connexion à la base de données.
+	"""
 	def __init__(self):
 		self.conn = mysql.connector.connect(host="infoweb",user="E145425W",password="E145425W", database="E145425W")
 
 
+	"""
+	Création des tables activité, installation, equipement et equipe_active.
+	L'ordre de création est important à cause des clés etrangères.
+	"""
 	def newTables(self):
 		cursor = self.conn.cursor()
 
 		try:
 			cursor.execute("""
-				CREATE TABLE IF NOT EXISTS activite (
+				CREATE TABLE IF NOT EXISTS activite2 (
 					idAct INTEGER NOT NULL,
 					nom varchar(255) DEFAULT NULL,
 					PRIMARY KEY(idAct))
@@ -27,7 +33,7 @@ class GestionBDD(object):
 
 		try:
 			cursor.execute("""
-				CREATE TABLE IF NOT EXISTS installation (
+				CREATE TABLE IF NOT EXISTS installation2 (
 					id varchar(255) NOT NULL,
 					nom varchar(255) DEFAULT NULL,
 					adresse varchar(255) DEFAULT NULL,
@@ -43,7 +49,7 @@ class GestionBDD(object):
 
 		try:
 			cursor.execute("""
-				CREATE TABLE IF NOT EXISTS equipement (
+				CREATE TABLE IF NOT EXISTS equipement2 (
 					id varchar (255) NOT NULL,
 					nom varchar(255) DEFAULT NULL,
 					id_installation varchar(255),
@@ -56,7 +62,7 @@ class GestionBDD(object):
 
 		try:
 			cursor.execute("""
-				CREATE TABLE IF NOT EXISTS equip_activ (
+				CREATE TABLE IF NOT EXISTS equip_activ2 (
 					id_equip varchar(255) NOT NULL,
 					id_activ INTEGER NOT NULL,
 					PRIMARY KEY(id_equip, id_activ),
@@ -68,11 +74,17 @@ class GestionBDD(object):
 			print("ERREUR Equip_ActivAct: " + e.strerror)
 
 
-	"""Fonctions d'ajouts"""
+	"""
+	Fonctions permettant l'ajout de lignes dans les tables.
+	- insertInstall( idi, nom, adresse, codePostal, ville, latitude, longitude)
+	- insertActivite( ida, nom)
+	- insertEquip( ide, nom, id_installation)
+	- insertEquipActiv( id_equip, id_activ)
+	"""
 	def insertInstall(self, idi, nom, adresse, codePostal, ville, latitude, longitude):
 		cursor = self.conn.cursor()
 		try:
-			cursor.execute("""INSERT INTO installation (id, nom, adresse, codePostal, ville, latitude, longitude) VALUES(%s, %s, %s, %s, %s, %s, %s)""", (idi, nom, adresse, codePostal, ville, latitude, longitude))
+			cursor.execute("""INSERT INTO installation2 (id, nom, adresse, codePostal, ville, latitude, longitude) VALUES(%s, %s, %s, %s, %s, %s, %s)""", (idi, nom, adresse, codePostal, ville, latitude, longitude))
 		except RuntimeError as e:
 			print("ERREUR : " + e.strerror)
 		else:
@@ -82,7 +94,7 @@ class GestionBDD(object):
 	def insertActivite(self, ida, nom):
 		cursor = self.conn.cursor()
 		try:
-			cursor.execute("""INSERT INTO activite (idAct, nom) VALUES(%s, %s)""", (ida, nom))
+			cursor.execute("""INSERT INTO activite2 (idAct, nom) VALUES(%s, %s)""", (ida, nom))
 		except RuntimeError as e:
 			print("ERREUR : " + e.strerror)
 		else:
@@ -92,7 +104,7 @@ class GestionBDD(object):
 	def insertEquip(self, ide, nom, id_installation):
 		cursor = self.conn.cursor()
 		try:
-			cursor.execute("""INSERT INTO equipement (id, nom, id_installation) VALUES(%s, %s, %s)""", (ide, nom, id_installation))
+			cursor.execute("""INSERT INTO equipement2 (id, nom, id_installation) VALUES(%s, %s, %s)""", (ide, nom, id_installation))
 		except RuntimeError as e:
 			print("ERREUR : " + e.strerror)
 		else:
@@ -102,7 +114,7 @@ class GestionBDD(object):
 	def insertEquipActiv(self, id_equip, id_activ):
 		cursor = self.conn.cursor()
 		try:
-			cursor.execute("""INSERT INTO equip_activ (id_equip, id_activ) VALUES(%s, %s)""", (id_equip, id_activ))
+			cursor.execute("""INSERT INTO equip_activ2 (id_equip, id_activ) VALUES(%s, %s)""", (id_equip, id_activ))
 		except RuntimeError as e:
 			print("ERREUR : " + e.strerror)
 		else:
@@ -131,6 +143,8 @@ class GestionBDD(object):
 		# 	cursor.execute("""UPDATE pagesTEST SET adPage = %s WHERE idPage = %s """, (adPage, ide))
 		# 	self.conn.commit()
 
-	"""Fonction de déconnexion de la BDD"""
+	"""
+	Fonction de déconnexion de la BDD
+	"""
 	def deco(self):
 		self.conn.close()
