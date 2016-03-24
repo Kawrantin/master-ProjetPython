@@ -22,13 +22,17 @@ Ce qui est note:
 		- clefs primaire / etrangere
 		- Liens entre des tables
 
-	/!\ Utiliser GitHub /!\
-	1\	Utilisation de GitHub~
-		1\	Créer un compte
-		2\	git clone https://github.com/Kawrantin/master-ProjetPython.git
-		3\	git status
-			git add ...
-			git commit -m "..."
-			git push origine master -> commit avec le compte gitHub
-		4\	git fetch
-			git pull
+	
+	2\	/!\ Utiliser GitHub /!\
+		- Faire un clone d'un repo: git clone adresse du repo
+		- Voir l'etat du repo: git status (raccourci git st)
+		- Ajouter des fichiers (parfois des modifs): git Add
+		- Modification des fichiers locaux: git commit -m "un message"
+		- Partage des modifications: git push
+			- Il est possible de ne pas ciommit et push un fichier tant qu'il n'est pas terminé
+		- Recup des modifs du binome: git pull
+		- Gestion des conflits: vi fichier
+				git add fichier
+				git commit -m
+
+		-> utiliser des branches de developpement: git-flow

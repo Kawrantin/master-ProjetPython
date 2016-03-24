@@ -11,6 +11,7 @@ def main():
 	codesAct = []
 	idEqu = []
 	idIns = []
+	idEA = []
 
 
 	fname = "data/activite.csv"
@@ -66,12 +67,16 @@ def main():
 		reader = csv.reader(file1, delimiter=',', quotechar='"')
 		for row in reader:
 			try:
-				gp.insertEquipActiv(row[2], row[4])
+				if (""+row[2] +","+ row[4]) not in idEA:
+					gp.insertEquipActiv(row[2], row[4])
+					print (row[2] + " " + row[4])
+					idEA.append(""+row[2]+","+ row[4])
 			except RuntimeError as e:
 				print("ERREUR : " + e.strerror)
 
 	except RuntimeError as e:
 		print("ERREUR : " + e.strerror)
+
 
 
 	finally:
