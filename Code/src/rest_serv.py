@@ -1,29 +1,26 @@
-from libs.bottle import route, template, run
+#!/usr/bin/python3
+#-*- coding: utf-8 -*-
 
-@route('/hello/<name>/<nom>')
-def index(name, nom):
-    return template('<b>Hello {{name}}</b>! <br> <b>Hello {{nom}}</b>! ', name=name, nom=nom)
 
-run(host='infoweb', port=8080)
-
-import _mysql
+from libs.bottle import route, run, debug, template, request
+import mysql
+import mysql.connector
 import sys
+import urllib
 
-try:
-    con = _mysql.connect('infoweb', 'E145425W', 'E145425W', 'E145425W')
-        
-    con.query("SELECT VERSION()")
-    result = con.use_result()
-    
-    print "MySQL version: %s" % \
-        result.fetch_row()[0]
-    
-except _mysql.Error, e:
-  
-    print "Error %d: %s" % (e.args[0], e.args[1])
-    sys.exit(1)
 
-finally:
-    
-    if con:
-        con.close()
+
+@route('/<item>')
+def show_id(item):
+    conn = mysql.connector.connect(host="infoweb", user="E145425W", password="E145425W", database="E145425W")
+    c = conn.cursor()
+    c.execute("select nom from equipement where numero = (select numEquipement from equip_activ where numActivite(SELECT idAct FROM activite WHERE nom = '"+item+"'))")
+    result = c.fetchall()
+    c.close()
+    if not result:
+        return 'This item number does not exist!'
+    else:
+        return template('<b>Résultat : {{itemr}}</b>!', itemr=result[0])
+
+
+run(host='localhost', port=8080)
