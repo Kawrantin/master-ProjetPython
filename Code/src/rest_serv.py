@@ -7,6 +7,7 @@ import mysql
 import mysql.connector
 import sys
 import urllib
+import unittest
 
 
 
@@ -16,7 +17,7 @@ def show_id(item):
     ret = []
     conn = mysql.connector.connect(host="infoweb", user="E145425W", password="E145425W", database="E145425W")
     c = conn.cursor()
-    c.execute("SELECT e.nom FROM equipement e JOIN equip_activ ea ON e.id = ea.id_equip JOIN activite a ON ea.id_activ = a.idAct WHERE a.nom LIKE '%"+[item]+"%'") 
+    c.execute("SELECT e.nom FROM equipement e JOIN equip_activ ea ON e.id = ea.id_equip JOIN activite a ON ea.id_activ = a.idAct WHERE a.nom LIKE '%"+item+"%'") 
     result = c.fetchall()
 
     for row in result:
@@ -29,9 +30,22 @@ def show_id(item):
     else:
         return template('Résultat :  <br> {{itemr}}', itemr=retour)
 
+
 @route('/<filepath:path>')
 def server_static(filepath):
     return static_file(filepath, root='./view')
 
 run(host='localhost', port=8080)
 
+
+    
+
+class TestServ(unittest.TestCase):
+ 
+    def test_show_id(self):
+        self.assertEqual(show_id('522938'),'This item number does not exist!')
+        self.assertEqual(show_id('compak'),'Résultat :  <br> Pas de tir aux plateaux, ')
+
+
+if __name__ == '__main__':
+    unittest.main()
