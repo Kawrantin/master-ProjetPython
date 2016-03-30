@@ -36,3 +36,10 @@ Ce qui est note:
 				git commit -m
 
 		-> utiliser des branches de developpement: git-flow
+
+Notation: 
+	Architecture logicielle et conception: /4
+	Tests unitaires et gestions des erreurs: /3
+	Qualité du code et documentation: /4
+	Présentation, recul: /3
+	Demonstration: /2
