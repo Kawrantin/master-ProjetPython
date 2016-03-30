@@ -17,12 +17,8 @@ def show_id(item):
     ret = []
     conn = mysql.connector.connect(host="infoweb", user="E145425W", password="E145425W", database="E145425W") #connexion a la base de donnees
     c = conn.cursor()
-<<<<<<< HEAD
-    c.execute("SELECT e.nom FROM equipement e JOIN equip_activ ea ON e.id = ea.id_equip JOIN activite a ON ea.id_activ = a.idAct WHERE a.nom LIKE '%"+item+"%'") 
-=======
-    c.execute("SELECT e.nom FROM equipement e JOIN equip_activ ea ON e.id = ea.id_equip JOIN activite a ON ea.id_activ = a.idAct WHERE a.nom LIKE'%"+item+"%'")
+    c.execute("SELECT e.nom FROM equipement e JOIN equip_activ ea ON e.id = ea.id_equip JOIN activite a ON ea.id_activ = a.idAct WHERE a.nom LIKE '%"+item+"%'")
     #on cherche le nom des equipements pour l'activite recherchee
->>>>>>> b899b8b934a384818951ae7111641fd8aa9d56c0
     result = c.fetchall()
     #cela nous renvoie un tableau des differentes reponses 
     for row in result:
