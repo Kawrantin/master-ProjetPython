@@ -1,0 +1,48 @@
+Title     : Text-To-Speech – Horoquartz
+Author    : Corentin OLLIVIER
+Logo      : True
+
+[TITLE]
+
+# API Microsoft
+
+Le Text-To-Speech, TTS, consiste en la lecture de phrases par un programme informatique. Cela se déroule en plusieurs étapes : 
+
+  * Analyse du texte en phrase, pour une meilleure intonation.
+  * Conversion de chaque mot en phonème.
+  * Génération des sons correspondants.
+
+**La solution Speech API :**
+
+* Demande la synthèse vocale de la norme SAPI 5
+*	Un fichier son téléchargeable en sortie.
+
+Speech API est une API Microsoft open source permettant de programmer des logiciels TTS. 
+
+**Installation :**
+
+https://www.microsoft.com/en-us/download/details.aspx?id=10121
+
+**Documentation complète de l’API Microsoft :**
+
+https://msdn.microsoft.com/en-us/library/ms723627(v=vs.85).aspx
+
+Combinaison avec MBROLA :	
+
+-	<http://SpeechAPI.sourceforge.net/mbrola.html>
+
+-	<http://tcts.fpms.ac.be/synthesis/mbrola.html>
+
+-	<http://logiciels.ash-60.fr/download/guide_SpeechAPI_mbrola.pdf>
+
+~Code
+
+echo "Je sais presque parler Français" > test.txt
+Speech API –v mb/mb-fr1 –f test.txt | mbrola /usr/share/mbrola/voices/fr1 --| aplay –r16000 –fS16
+
+~
+
+Mbrola permet d’amélioration la synthèse vocale, en effet, les voix de Mbrola sont plus variées et plus performante pour la synthétisation des phonèmes que fournit Speech API après le parcours d’un texte.
+
+
+
